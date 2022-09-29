@@ -37,18 +37,16 @@ h1 {
     grid-template-columns: auto auto auto auto auto auto auto auto;
     background: #555;
 }
+.square {
+  box-sizing: border-box;
+}
 .white-square {
   background: #fff;
 }
 .black-square {
   background: #000;
 }
-.white-square:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-.black-square:after {
+.square:after {
   content: "";
   display: block;
   padding-bottom: 100%;
