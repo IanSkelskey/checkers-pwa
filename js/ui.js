@@ -25,6 +25,7 @@ function createBoard() {
       }
     }
   }
+  console.log('Board created!');
 }
 
 squares.forEach(square => {
