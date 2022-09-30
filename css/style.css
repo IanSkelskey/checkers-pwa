@@ -38,6 +38,9 @@ h1 {
     background: #555;
 }
 .square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-style: solid;
   border-width: 4pt;
   box-sizing: border-box;
@@ -54,4 +57,18 @@ h1 {
   content: "";
   display: block;
   padding-bottom: 100%;
+}
+
+.piece {
+  border-radius: 50%;
+  width: 75%;
+  height: 75%;
+}
+
+.red {
+  background: #e74c3c;
+}
+
+.blue {
+  background: cornflowerblue;
 }
