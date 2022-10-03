@@ -1,8 +1,9 @@
 class Board {
   constructor(size) {
+    this.size = size;
     this.board = document.createElement('div');
     this.board.id = 'board';
-    this.createGrid(size);
+    this.createGrid();
     this.addToDOM('main');
     this.squares = document.querySelectorAll('.square');
     this.setupSquareClickEvents();
@@ -14,22 +15,23 @@ class Board {
     element.appendChild(this.board);
   }
 
-  createGrid(size) {
-    for (let i = 0; i < size; i ++) {
-      for (let j = 0; j < size; j++) {
+  createGrid() {
+    for (let i = 0; i < this.size; i ++) {
+      for (let j = 0; j < this.size; j++) {
         if ((i+j) % 2 === 0) {
-          this.board.appendChild(this.createSquare('black'));
+          this.board.appendChild(this.createSquare('black', i, j));
         } else {
-          this.board.appendChild(this.createSquare('white'));
+          this.board.appendChild(this.createSquare('white', i, j));
         }
       }
     }
   }
 
-  createSquare(color) {
+  createSquare(color, row, col) {
     let square = document.createElement('div');
     square.classList.add('square');
     square.classList.add(color + '-square');
+    square.id = "r" + row + "c" + col;
     return square;
   }
 
@@ -51,13 +53,26 @@ class Board {
 
   createPieces() {
     this.setupRedPieces();
+    this.setupBluePieces();
   }
 
   setupRedPieces() {
-    for (let i = 1; i < 9; i++) {
-      for (let j = 1; j < 9; j++) {
-        if ((i*j-1) % 2 === 0) {
-          this.squares.item(i+j).appendChild(this.createPiece('red'));
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < this.size; j++) {
+        if ((i+j) % 2 === 0) {
+          let targetSquare = document.querySelector('#r' + i + 'c' + j);
+          targetSquare.appendChild(this.createPiece('red'));
+        }
+      }
+    }
+  }
+
+  setupBluePieces() {
+    for (let i = 5; i < this.size; i++) {
+      for (let j = 0; j < this.size; j++) {
+        if ((i+j) % 2 === 0) {
+          let targetSquare = document.querySelector('#r' + i + 'c' + j);
+          targetSquare.appendChild(this.createPiece('blue'));
         }
       }
     }
