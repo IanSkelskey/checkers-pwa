@@ -45,11 +45,11 @@ h1 {
   border-width: 4pt;
   box-sizing: border-box;
 }
-.white-square {
+.white {
   background: #fff;
   border-color: #fff;
 }
-.black-square {
+.black {
   background: #000;
   border-color: #000;
 }

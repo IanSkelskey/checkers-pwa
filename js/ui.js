@@ -1,3 +1,5 @@
+import {Board2} from "../board";
+
 class Board {
   constructor(size) {
     this.size = size;
@@ -30,7 +32,7 @@ class Board {
   createSquare(color, row, col) {
     let square = document.createElement('div');
     square.classList.add('square');
-    square.classList.add(color + '-square');
+    square.classList.add(color);
     square.id = "r" + row + "c" + col;
     return square;
   }
@@ -80,6 +82,10 @@ class Board {
 
 }
 
-const board = new Board(8);
+customElements.define('board', Board2)
+const test = document.createElement('div');
+test.classList.add('black');
+document.getElementById('main').appendChild(new Board2(8));
+// const board = new Board(8);
 
 
