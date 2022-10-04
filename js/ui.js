@@ -1,4 +1,4 @@
-import {Board2} from "../board";
+import {Board2} from "./game/board";
 
 class Board {
   constructor(size) {
