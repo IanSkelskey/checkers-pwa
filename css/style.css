@@ -16,22 +16,6 @@ main {
   padding: 0.5rem;
   text-align: center;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-ul {
-  list-style: none;
-  display: flex;
-}
-li {
-  margin-right: 1rem;
-}
-h1 {
-  color: #e74c3c;
-  margin-bottom: 0.5rem;
-}
 #board {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;
