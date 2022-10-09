@@ -1,3 +1,5 @@
+import {GameLogic} from "./game/game-logic.js";
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("/checkers-pwa/sw.js")
@@ -5,12 +7,6 @@ if ("serviceWorker" in navigator) {
     .catch(err => console.log("service worker not registered", err))
 }
 
-include('js/ui.js');
+const game = new GameLogic();
 
-function include(file) {
-  const script = document.createElement('script');
-  script.src  = file;
-  script.type = 'module';
-  script.defer = true;
-  document.getElementsByTagName('head').item(0).appendChild(script);
-}
+game.newGame();
