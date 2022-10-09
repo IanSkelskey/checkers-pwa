@@ -35,6 +35,18 @@ board-tile {
     box-sizing: border-box;
 }
 
+board-tile:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+game-piece {
+    border-radius: 50%;
+    width: 75%;
+    height: 75%;
+}
+
 .white {
     background: #fff;
     border-color: #fff;
@@ -48,18 +60,6 @@ board-tile {
 .label {
     font-size: x-large;
     color: black;
-}
-
-board-tile:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-}
-
-game-piece {
-    border-radius: 50%;
-    width: 75%;
-    height: 75%;
 }
 
 .red {
