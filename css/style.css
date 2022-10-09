@@ -1,58 +1,51 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  alignment: center;
-  background: #fdfdfd;
-  font-family: "Nunito", sans-serif;
-  font-size: 1rem;
-}
 main {
-  max-width: 500pt;
-  margin: auto;
-  padding: 0.5rem;
-  text-align: center;
+    max-width: 500pt;
+    margin: auto;
+    padding: 0.5rem;
+    text-align: center;
 }
-#board {
+
+game-board {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;
     background: #555;
 }
-.square {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-style: solid;
-  border-width: 4pt;
-  box-sizing: border-box;
-}
-.white {
-  background: #fff;
-  border-color: #fff;
-}
-.black {
-  background: #000;
-  border-color: #000;
-}
-.square:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
+
+board-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 4pt;
+    box-sizing: border-box;
 }
 
-.piece {
-  border-radius: 50%;
-  width: 75%;
-  height: 75%;
+.white {
+    background: #fff;
+    border-color: #fff;
+}
+
+.black {
+    background: #000;
+    border-color: #000;
+}
+
+board-tile:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+game-piece {
+    border-radius: 50%;
+    width: 75%;
+    height: 75%;
 }
 
 .red {
-  background: #e74c3c;
+    background: #e74c3c;
 }
 
 .blue {
-  background: cornflowerblue;
+    background: cornflowerblue;
 }
