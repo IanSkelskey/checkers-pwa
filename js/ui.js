@@ -70,7 +70,7 @@ class BoardTile extends HTMLElement {
         this.highlighted = true;
     }
     unhighlightPiece() {
-        this.setAttribute("style", "");
+        this.removeAttribute("style");
         this.highlighted = false;
     }
 }
@@ -84,13 +84,64 @@ class GamePiece extends HTMLElement {
     }
 }
 
+class XLabel extends HTMLElement {
+    constructor() {
+        super();
+    }
+    populate() {
+        for (let i = 0; i < 8; i++) {
+            let tile = document.createElement("board-tile");
+            tile.setProperties('white', 9, i);
+            let letter = document.createElement("div");
+            letter.textContent = String.fromCharCode('A'.charCodeAt(0) + i);
+            letter.classList.add("label");
+            if (i !== 8) {
+                tile.appendChild(letter);
+            }
+            this.appendChild(tile);
+        }
+    }
+}
+
+class YLabel extends HTMLElement {
+    constructor() {
+        super();
+    }
+    populate() {
+        for (let i = 0; i < 9; i++) {
+            let tile = document.createElement("board-tile");
+            tile.setProperties('white', i, -1);
+            let number = document.createElement("div");
+            number.textContent = 8-i;
+            number.classList.add("label");
+            if (i !== 8) {
+                tile.appendChild(number);
+            }
+            this.appendChild(tile);
+        }
+    }
+}
+
 customElements.define("game-board", GameBoard);
+customElements.define("x-label", XLabel);
+customElements.define("y-label", YLabel)
 customElements.define("board-tile", BoardTile)
 customElements.define("game-piece", GamePiece)
 
 const main = document.getElementsByTagName("main").item(0);
 const board = document.createElement("game-board");
+const xLabel = document.createElement("x-label");
+const yLabel = document.createElement("y-label");
+
 board.populateTiles();
 board.setupPieces('red');
 board.setupPieces('blue');
+yLabel.populate();
+main.appendChild(yLabel);
 main.appendChild(board);
+xLabel.populate();
+main.appendChild(xLabel);
+
+function getNextChar(char) {
+    return String.fromCharCode(char.charCodeAt(0) + 1);
+}

@@ -6,8 +6,23 @@ main {
 }
 
 game-board {
+    width: 88.889%;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;
+    background: #555;
+}
+
+x-label {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    background: #555;
+}
+
+y-label {
+    width: 11.111%;
+    float: left;
+    display: grid;
+    grid-template-columns: auto;
     background: #555;
 }
 
@@ -28,6 +43,11 @@ board-tile {
 .black {
     background: #000;
     border-color: #000;
+}
+
+.label {
+    font-size: x-large;
+    color: black;
 }
 
 board-tile:after {
