@@ -15,7 +15,6 @@ class GameBoard extends HTMLElement {
                 this.appendChild(tile);
             }
         }
-        this.setupTileClickEvents();
     }
 
     getTiles() {
@@ -26,27 +25,14 @@ class GameBoard extends HTMLElement {
         return this.querySelector('#r' + row + 'c' + col);
     }
 
-    setupTileClickEvents() {
-        let tiles = this.getTiles();
-        for (let i = 0; i < tiles.length; i++) {
-            let tile = tiles.item(i);
-            tile.addEventListener('click', function handleClick(event) {
-                console.log('square clicked', event);
-                tile.setAttribute('style', 'border-color: #e74c3c; border-style: solid; border-width: 4pt;');
-            })
-        }
-    }
-
     setupPieces(color) {
         let startRow = (color === 'red') ? 0 : 5;
         let endRow = (color === 'red') ? 3 : 8;
         for (let i = startRow; i < endRow; i++) {
             for (let j = 0; j < 8; j++) {
                 if ((i + j) % 2 === 0) {
-                    let targetTile = this.getTile(i, j);
-                    let piece = document.createElement('game-piece');
-                    piece.setColor(color);
-                    targetTile.appendChild(piece);
+                    let tile = this.getTile(i, j);
+                    tile.addPiece(color);
                 }
             }
         }
@@ -56,15 +42,41 @@ class GameBoard extends HTMLElement {
 class BoardTile extends HTMLElement {
     constructor() {
         super();
+        this.highlighted = false;
+        this.addEventListener('click', function handleClick(event) {
+            if (this.hasPiece()) {
+                if (!this.highlighted) {
+                    this.highlightPiece();
+                } else {
+                    this.unhighlightPiece();
+                }
+            }
+        })
     }
     setProperties(color, row, col) {
         this.classList.add(color);
         this.id = "r" + row + "c" + col;
     }
+    addPiece(color) {
+        let piece = document.createElement('game-piece');
+        piece.setColor(color);
+        this.appendChild(piece);
+    }
+    hasPiece() {
+        return (this.getElementsByTagName("game-piece").length !== 0)
+    }
+    highlightPiece() {
+        this.setAttribute("style", "border-color: #81CE5E;");
+        this.highlighted = true;
+    }
+    unhighlightPiece() {
+        this.setAttribute("style", "");
+        this.highlighted = false;
+    }
 }
 
 class GamePiece extends HTMLElement {
-    constructor(color) {
+    constructor() {
         super();
     }
     setColor(color) {
