@@ -15,10 +15,26 @@ class GameBoard extends HTMLElement {
                 this.appendChild(tile);
             }
         }
+        this.setupTileClickEvents();
+    }
+
+    getTiles() {
+        return this.getElementsByTagName("board-tile");
     }
 
     getTile(row, col) {
         return this.querySelector('#r' + row + 'c' + col);
+    }
+
+    setupTileClickEvents() {
+        let tiles = this.getTiles();
+        for (let i = 0; i < tiles.length; i++) {
+            let tile = tiles.item(i);
+            tile.addEventListener('click', function handleClick(event) {
+                console.log('square clicked', event);
+                tile.setAttribute('style', 'border-color: #e74c3c; border-style: solid; border-width: 4pt;');
+            })
+        }
     }
 
     setupPieces(color) {
