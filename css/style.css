@@ -5,7 +5,7 @@ main {
     text-align: center;
 }
 
-game-board {
+game-grid {
     width: 88.889%;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;
@@ -58,7 +58,7 @@ game-piece {
 }
 
 .label {
-    font-size: x-large;
+    font-size: medium;
     color: black;
 }
 
