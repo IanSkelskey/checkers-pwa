@@ -1,5 +1,8 @@
-import {BoardTile} from "./board-tile.js";
-customElements.define("board-tile", BoardTile);
+import {GameTile} from "./game-tile.js";
+import {LabelTile} from "./label-tile.js";
+
+customElements.define("game-tile", GameTile);
+customElements.define("label-tile", LabelTile);
 
 export class GameGrid extends HTMLElement {
     constructor() {
@@ -10,18 +13,25 @@ export class GameGrid extends HTMLElement {
     populateTiles() {
         console.log("Populating tiles...");
         let size = 8;
-        for (let i = 0; i < size; i++) {
-            for (let j = 0; j < size; j++) {
-                let color = ((i + j) % 2 === 0) ? 'black' : 'white';
-                let tile = document.createElement("board-tile");
-                tile.setProperties(color, i, j);
+        let tile;
+        for (let i = 0; i < size + 1; i++) {
+            for (let j = 0; j < size + 1; j++) {
+                if (i === size ? j !== 0 : j === 0) {
+                    let label = (i === size) ? String.fromCharCode('A'.charCodeAt(0) + j - 1) : 8 - i;
+                    tile = document.createElement("label-tile");
+                    tile.setLabel(label);
+                } else { // Game Grid
+                    let color = ((i + j) % 2 === 0 && i !== size) ? 'black' : 'white';
+                    tile = document.createElement("game-tile");
+                    tile.setProperties(color, i, j - 1);
+                }
                 this.appendChild(tile);
             }
         }
     }
 
     getTiles() {
-        return this.getElementsByTagName("board-tile");
+        return this.getElementsByTagName("game-tile");
     }
 
     getTile(row, col) {
@@ -33,50 +43,11 @@ export class GameGrid extends HTMLElement {
         let endRow = (color === 'red') ? 3 : 8;
         for (let i = startRow; i < endRow; i++) {
             for (let j = 0; j < 8; j++) {
-                if ((i + j) % 2 === 0) {
+                if ((i + j) % 2 !== 0) {
                     let tile = this.getTile(i, j);
                     tile.addPiece(color);
                 }
             }
-        }
-    }
-}
-
-
-export class XLabel extends HTMLElement {
-    constructor() {
-        super();
-    }
-    populate() {
-        for (let i = 0; i < 8; i++) {
-            let tile = document.createElement("board-tile");
-            tile.setProperties('white', 9, i);
-            let letter = document.createElement("div");
-            letter.textContent = String.fromCharCode('A'.charCodeAt(0) + i);
-            letter.classList.add("label");
-            if (i !== 8) {
-                tile.appendChild(letter);
-            }
-            this.appendChild(tile);
-        }
-    }
-}
-
-export class YLabel extends HTMLElement {
-    constructor() {
-        super();
-    }
-    populate() {
-        for (let i = 0; i < 9; i++) {
-            let tile = document.createElement("board-tile");
-            tile.setProperties('white', i, -1);
-            let number = document.createElement("div");
-            number.textContent = 8-i;
-            number.classList.add("label");
-            if (i !== 8) {
-                tile.appendChild(number);
-            }
-            this.appendChild(tile);
         }
     }
 }

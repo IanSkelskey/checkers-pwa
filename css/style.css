@@ -1,4 +1,5 @@
 main {
+    max-height: 500pt;
     max-width: 500pt;
     margin: auto;
     padding: 0.5rem;
@@ -6,27 +7,12 @@ main {
 }
 
 game-grid {
-    width: 88.889%;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
     background: #555;
 }
 
-x-label {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto;
-    background: #555;
-}
-
-y-label {
-    width: 11.111%;
-    float: left;
-    display: grid;
-    grid-template-columns: auto;
-    background: #555;
-}
-
-board-tile {
+game-tile {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,10 +21,19 @@ board-tile {
     box-sizing: border-box;
 }
 
-board-tile:after {
+game-tile:after {
     content: "";
     display: block;
     padding-bottom: 100%;
+}
+
+label-tile {
+    display: flex;
+    font-size: medium;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
 
 game-piece {
@@ -51,16 +46,11 @@ game-piece {
     background: #fff;
     border-color: #fff;
 }
-
 .black {
     background: #000;
     border-color: #000;
 }
 
-.label {
-    font-size: medium;
-    color: black;
-}
 
 .red {
     background: #e74c3c;
@@ -68,4 +58,10 @@ game-piece {
 
 .blue {
     background: cornflowerblue;
+}
+.purple {
+    background: mediumpurple;
+}
+.pink {
+    background: hotpink;
 }
