@@ -1,16 +1,16 @@
-import {GamePiece} from "./game-piece.js";
+import { GamePiece } from './game-piece.js';
 
-customElements.define("game-piece", GamePiece);
+customElements.define('game-piece', GamePiece);
 
 export class GameTile extends HTMLElement {
     constructor() {
         super();
         this.highlighted = false;
-        this.addEventListener('click', this.handleClick)
+        this.addEventListener('click', this.handleClick);
     }
     setProperties(color, row, col) {
         this.classList.add(color);
-        this.id = "r" + row + "c" + col;
+        this.id = 'r' + row + 'c' + col;
     }
     addPiece(color) {
         let piece = document.createElement('game-piece');
@@ -18,7 +18,7 @@ export class GameTile extends HTMLElement {
         this.appendChild(piece);
     }
     hasPiece() {
-        return (this.getElementsByTagName("game-piece").length !== 0)
+        return this.getElementsByTagName('game-piece').length !== 0;
     }
     handleClick() {
         if (this.hasPiece()) {
@@ -30,11 +30,11 @@ export class GameTile extends HTMLElement {
         }
     }
     highlightPiece() {
-        this.setAttribute("style", "border-color: #81CE5E;");
+        this.setAttribute('style', 'border-color: #81CE5E;');
         this.highlighted = true;
     }
     unhighlightPiece() {
-        this.removeAttribute("style");
+        this.removeAttribute('style');
         this.highlighted = false;
     }
 }

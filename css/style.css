@@ -7,8 +7,6 @@ main {
 }
 
 game-grid {
-
-
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
     background: #555;
@@ -24,7 +22,7 @@ game-tile {
 }
 
 game-tile:after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
 }
@@ -39,7 +37,7 @@ label-tile {
 }
 
 label-tile:after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
 }
@@ -58,7 +56,6 @@ game-piece {
     background: #000;
     border-color: #000;
 }
-
 
 .red {
     background: #e74c3c;
