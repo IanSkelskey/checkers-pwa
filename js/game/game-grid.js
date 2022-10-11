@@ -16,12 +16,15 @@ export class GameGrid extends HTMLElement {
         let tile;
         for (let i = 0; i < size + 1; i++) {
             for (let j = 0; j < size + 1; j++) {
-                if (i === size ? j !== 0 : j === 0) {
+                if (i === size || j === 0) {
                     let label = (i === size) ? String.fromCharCode('A'.charCodeAt(0) + j - 1) : 8 - i;
                     tile = document.createElement("label-tile");
+                    if (i === size && j === 0) {
+                        label = '';
+                    }
                     tile.setLabel(label);
                 } else { // Game Grid
-                    let color = ((i + j) % 2 === 0 && i !== size) ? 'black' : 'white';
+                    let color = ((i + j) % 2 === 0) ? 'black' : 'white';
                     tile = document.createElement("game-tile");
                     tile.setProperties(color, i, j - 1);
                 }

@@ -7,6 +7,8 @@ main {
 }
 
 game-grid {
+
+
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
     background: #555;
@@ -34,6 +36,12 @@ label-tile {
     justify-content: center;
     align-items: center;
     color: black;
+}
+
+label-tile:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
 }
 
 game-piece {
