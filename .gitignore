@@ -1,1 +1,5 @@
+# Jet Brains
 .idea/
+
+# Node
+/node_modules
